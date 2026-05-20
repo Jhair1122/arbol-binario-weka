@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árbol Binario de Búsqueda - Weka</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles"></div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-tree"></i>
+                <span>Árbol Binario (Weka)</span>
+            </div>
+            <div class="nav-links">
+                <a href="#ingreso"><i class="fas fa-edit"></i> Ingreso</a>
+                <a href="#reportes"><i class="fas fa-list"></i> Reportes</a>
+                <a href="#visualizacion"><i class="fas fa-project-diagram"></i> Visualización</a>
+                <a href="#codigo"><i class="fas fa-code"></i> Código</a>
+                <a href="#prueba"><i class="fas fa-pencil-alt"></i> Prueba</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="title-animation">
+                    <span class="title-icon"><i class="fas fa-tree"></i></span>
+                    ÁRBOL BINARIO DE BÚSQUEDA
+                </h1>
+                <p class="subtitle">Implementación con Weka - Recorridos y Búsqueda</p>
+                <div class="header-stats">
+                    <div class="stat-item"><i class="fas fa-code-branch"></i><span>Preorden</span></div>
+                    <div class="stat-item"><i class="fas fa-code-branch"></i><span>Inorden</span></div>
+                    <div class="stat-item"><i class="fas fa-code-branch"></i><span>Postorden</span></div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Ingreso de nodos -->
+            <section id="ingreso" class="section input-section">
+                <div class="section-header">
+                    <i class="fas fa-edit section-icon"></i>
+                    <h2>Ingreso de Nodos del Árbol</h2>
+                </div>
+                <div class="input-container">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-hashtag input-icon"></i>
+                            <input type="number" id="nodoInput" placeholder="Valor del nodo..." class="number-input">
+                        </div>
+                        <button id="btnAgregarRaiz" class="btn btn-primary"><i class="fas fa-plus"></i> Insertar como Raíz</button>
+                        <button id="btnAgregarNodo" class="btn btn-secondary" disabled><i class="fas fa-plus"></i> Insertar Nodo</button>
+                        <button id="btnGenerarAleatorios" class="btn btn-outline"><i class="fas fa-random"></i> Generar Aleatorios</button>
+                    </div>
+                    <p class="info-text">El primer nodo será la raíz. Los siguientes se insertarán automáticamente (menores a la izquierda, mayores a la derecha).</p>
+                    <div id="nodosActuales" class="nodos-display"></div>
+                </div>
+            </section>
+
+            <!-- Búsqueda -->
+            <section id="busqueda" class="section search-section">
+                <div class="section-header">
+                    <i class="fas fa-search section-icon"></i>
+                    <h2>Búsqueda de Nodo</h2>
+                </div>
+                <div class="search-box">
+                    <div class="input-wrapper">
+                        <i class="fas fa-search input-icon"></i>
+                        <input type="number" id="buscarInput" placeholder="Número a buscar..." class="number-input">
+                    </div>
+                    <button onclick="buscarNodo()" class="btn btn-search"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+                <div id="resultadoBusqueda" class="search-result"></div>
+            </section>
+
+            <!-- Reportes -->
+            <section id="reportes" class="section report-section">
+                <div class="section-header">
+                    <i class="fas fa-list section-icon"></i>
+                    <h2>Reporte de Recorridos</h2>
+                </div>
+                <div class="report-grid">
+                    <div class="report-card">
+                        <h3>Preorden</h3>
+                        <div id="preordenResult" class="report-content"></div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Inorden (Ascendente)</h3>
+                        <div id="inordenResult" class="report-content"></div>
+                        <div id="pasosInorden" class="pasos-info"></div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Postorden</h3>
+                        <div id="postordenResult" class="report-content"></div>
+                    </div>
+                    <div class="report-card">
+                        <h3>Inorden Descendente</h3>
+                        <div id="inordenDescResult" class="report-content"></div>
+                        <div id="pasosInordenDesc" class="pasos-info"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visualización gráfica -->
+            <section id="visualizacion" class="section visual-section">
+                <div class="section-header">
+                    <i class="fas fa-project-diagram section-icon"></i>
+                    <h2>Visualización del Árbol Binario</h2>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="treeCanvas"></canvas>
+                </div>
+                <button onclick="dibujarArbol()" class="btn btn-visual"><i class="fas fa-sync-alt"></i> Actualizar Vista</button>
+            </section>
+
+            <!-- Código Java -->
+            <section id="codigo" class="section code-section">
+                <div class="section-header">
+                    <i class="fas fa-code section-icon"></i>
+                    <h2>Código del Programa en Java (con Weka)</h2>
+                </div>
+                <button onclick="mostrarCodigo()" class="btn btn-code"><i class="fas fa-eye"></i> <span id="btnCodigoText">Mostrar Código Java</span></button>
+                <pre id="codigoJava" style="display: none;"></pre>
+            </section>
+
+            <!-- Prueba de escritorio -->
+            <section id="prueba" class="section test-section">
+                <div class="section-header">
+                    <i class="fas fa-pencil-alt section-icon"></i>
+                    <h2>Prueba de Escritorio del Código</h2>
+                </div>
+                <div id="pruebaEscritorio" class="desktop-test"></div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2026 Árbol Binario con Weka - Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script src="js/binaryTree.js"></script>
+    <script src="js/treeVisualizer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
