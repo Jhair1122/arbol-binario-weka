@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     dibujarArbol();
     actualizarReportes();
+
+    window.addEventListener('resize', () => {
+        dibujarArbol();
+    });
 });
 
 function insertarRaiz() {
