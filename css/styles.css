@@ -511,3 +511,41 @@ footer {
     .title-animation { font-size: 2rem; }
     .section { padding: 1.5rem; }
 }
+
+/* ============ PANEL DOBLE (Ingreso + Visualización) ============ */
+.panel-doble {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 2rem;
+}
+
+.panel-izquierdo,
+.panel-derecho {
+    flex: 1 1 400px;          /* se adaptan, mínimo 400px cada uno */
+    min-width: 350px;
+}
+
+.panel-izquierdo .section-header,
+.panel-derecho .section-header {
+    margin-bottom: 1.5rem;
+}
+
+/* Ajustes para que el canvas no desborde */
+.panel-derecho .canvas-container {
+    margin: 0;
+}
+
+#treeCanvas {
+    width: 100%;
+    height: auto;
+    background: rgba(255,255,255,0.02);
+    border-radius: 15px;
+}
+
+/* Responsive: en pantallas pequeñas se apilan verticalmente */
+@media (max-width: 900px) {
+    .panel-doble {
+        flex-direction: column;
+    }
+}
