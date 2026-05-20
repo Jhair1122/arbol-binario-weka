@@ -44,25 +44,39 @@
 
         <main>
             <!-- Ingreso de nodos -->
-            <section id="ingreso" class="section input-section">
-                <div class="section-header">
-                    <i class="fas fa-edit section-icon"></i>
-                    <h2>Ingreso de Nodos del Árbol</h2>
+            <!-- Sección combinada: Ingreso + Visualización -->
+<section id="panelPrincipal" class="section panel-doble">
+    <div class="panel-izquierdo">
+        <div class="section-header">
+            <i class="fas fa-edit section-icon"></i>
+            <h2>Ingreso de Nodos del Árbol</h2>
+        </div>
+        <div class="input-container">
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <i class="fas fa-hashtag input-icon"></i>
+                    <input type="number" id="nodoInput" placeholder="Valor del nodo..." class="number-input">
                 </div>
-                <div class="input-container">
-                    <div class="input-group">
-                        <div class="input-wrapper">
-                            <i class="fas fa-hashtag input-icon"></i>
-                            <input type="number" id="nodoInput" placeholder="Valor del nodo..." class="number-input">
-                        </div>
-                        <button id="btnAgregarRaiz" class="btn btn-primary"><i class="fas fa-plus"></i> Insertar como Raíz</button>
-                        <button id="btnAgregarNodo" class="btn btn-secondary" disabled><i class="fas fa-plus"></i> Insertar Nodo</button>
-                        <button id="btnGenerarAleatorios" class="btn btn-outline"><i class="fas fa-random"></i> Generar Aleatorios</button>
-                    </div>
-                    <p class="info-text">El primer nodo será la raíz. Los siguientes se insertarán automáticamente (menores a la izquierda, mayores a la derecha).</p>
-                    <div id="nodosActuales" class="nodos-display"></div>
-                </div>
-            </section>
+                <button id="btnAgregarRaiz" class="btn btn-primary"><i class="fas fa-plus"></i> Insertar como Raíz</button>
+                <button id="btnAgregarNodo" class="btn btn-secondary" disabled><i class="fas fa-plus"></i> Insertar Nodo</button>
+                <button id="btnGenerarAleatorios" class="btn btn-outline"><i class="fas fa-random"></i> Generar Aleatorios</button>
+            </div>
+            <p class="info-text">El primer nodo será la raíz. Los siguientes se insertarán automáticamente (menores a la izquierda, mayores a la derecha).</p>
+            <div id="nodosActuales" class="nodos-display"></div>
+        </div>
+    </div>
+
+    <div class="panel-derecho">
+        <div class="section-header">
+            <i class="fas fa-project-diagram section-icon"></i>
+            <h2>Visualización del Árbol Binario</h2>
+        </div>
+        <div class="canvas-container">
+            <canvas id="treeCanvas"></canvas>
+        </div>
+        <button onclick="dibujarArbol()" class="btn btn-visual"><i class="fas fa-sync-alt"></i> Actualizar Vista</button>
+    </div>
+</section>
 
             <!-- Búsqueda -->
             <section id="busqueda" class="section search-section">
@@ -107,19 +121,6 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Visualización gráfica -->
-            <section id="visualizacion" class="section visual-section">
-                <div class="section-header">
-                    <i class="fas fa-project-diagram section-icon"></i>
-                    <h2>Visualización del Árbol Binario</h2>
-                </div>
-                <div class="canvas-container">
-                    <canvas id="treeCanvas"></canvas>
-                </div>
-                <button onclick="dibujarArbol()" class="btn btn-visual"><i class="fas fa-sync-alt"></i> Actualizar Vista</button>
-            </section>
-
             <!-- Código Java -->
             <section id="codigo" class="section code-section">
                 <div class="section-header">
