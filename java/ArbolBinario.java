@@ -1,4 +1,4 @@
-import weka.core.*; // Referencia simbólica a la librería Weka
+import weka.core.*;
 
 public class ArbolBinario {
     class Nodo {
