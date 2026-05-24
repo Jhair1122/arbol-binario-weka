@@ -549,3 +549,20 @@ footer {
         flex-direction: column;
     }
 }
+
+/* Visualización del árbol con scroll si es necesario */
+.canvas-container {
+    overflow: auto;
+    max-height: 600px;      /* muestra scroll vertical si el árbol es muy alto */
+    border-radius: 15px;
+    background: rgba(0,0,0,0.3);
+    padding: 0.5rem;
+    margin: 1rem 0;
+}
+
+#treeCanvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;           /* mantiene proporción */
+}
