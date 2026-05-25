@@ -432,21 +432,6 @@ body::before {
 .search-found i { color: var(--success); font-size: 2rem; }
 .search-not-found i { color: var(--danger); font-size: 2rem; }
 
-/* Canvas árbol */
-.canvas-container {
-    background: rgba(0,0,0,0.3);
-    border-radius: 25px;
-    padding: 1.5rem;
-    text-align: center;
-    margin: 1.5rem 0;
-}
-#treeCanvas {
-    max-width: 100%;
-    height: auto;
-    background: rgba(255,255,255,0.02);
-    border-radius: 15px;
-}
-
 /* Código Java */
 #codigoJava {
     background: #1a1a2e;
