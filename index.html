@@ -17,10 +17,9 @@
                 <span>Árbol Binario (Weka)</span>
             </div>
             <div class="nav-links">
-                <a href="#panelPrincipal"><i class="fas fa-edit"></i> Ingreso</a>
                 <a href="#busqueda"><i class="fas fa-search"></i> Búsqueda</a>
+                <a href="#panelPrincipal"><i class="fas fa-edit"></i> Ingreso</a>
                 <a href="#reportes"><i class="fas fa-list"></i> Reportes</a>
-                <a href="#panelPrincipal"><i class="fas fa-project-diagram"></i> Visualización</a>
                 <a href="#codigo"><i class="fas fa-code"></i> Código</a>
                 <a href="#prueba"><i class="fas fa-pencil-alt"></i> Prueba</a>
             </div>
@@ -44,43 +43,7 @@
         </header>
 
         <main>
-            <!-- Ingreso de nodos -->
-            <!-- Sección combinada: Ingreso + Visualización -->
-<section id="panelPrincipal" class="section panel-doble">
-    <div class="panel-izquierdo">
-        <div class="section-header">
-            <i class="fas fa-edit section-icon"></i>
-            <h2>Ingreso de Nodos del Árbol</h2>
-        </div>
-        <div class="input-container">
-            <div class="input-group">
-                <div class="input-wrapper">
-                    <i class="fas fa-hashtag input-icon"></i>
-                    <input type="number" id="nodoInput" placeholder="Valor del nodo..." class="number-input">
-                </div>
-                <button id="btnAgregarRaiz" class="btn btn-primary"><i class="fas fa-plus"></i> Insertar como Raíz</button>
-                <button id="btnAgregarNodo" class="btn btn-secondary" disabled><i class="fas fa-plus"></i> Insertar Nodo</button>
-                <button id="btnGenerarAleatorios" class="btn btn-outline"><i class="fas fa-random"></i> Generar Aleatorios</button>
-                <button id="btnDeshacer" class="btn btn-outline" disabled><i class="fas fa-undo"></i> Deshacer</button>
-            </div>
-            <p class="info-text">El primer nodo será la raíz. Los siguientes se insertarán automáticamente (menores a la izquierda, mayores a la derecha).</p>
-            <div id="nodosActuales" class="nodos-display"></div>
-        </div>
-    </div>
-
-    <div class="panel-derecho">
-        <div class="section-header">
-            <i class="fas fa-project-diagram section-icon"></i>
-            <h2>Visualización del Árbol Binario</h2>
-        </div>
-        <div class="canvas-container">
-            <canvas id="treeCanvas"></canvas>
-        </div>
-        <button onclick="dibujarArbol()" class="btn btn-visual"><i class="fas fa-sync-alt"></i> Actualizar Vista</button>
-    </div>
-</section>
-
-            <!-- Búsqueda -->
+            <!-- Sección de Búsqueda (ahora al principio) -->
             <section id="busqueda" class="section search-section">
                 <div class="section-header">
                     <i class="fas fa-search section-icon"></i>
@@ -94,6 +57,41 @@
                     <button onclick="buscarNodo()" class="btn btn-search"><i class="fas fa-search"></i> Buscar</button>
                 </div>
                 <div id="resultadoBusqueda" class="search-result"></div>
+            </section>
+
+            <!-- Sección combinada: Ingreso + Visualización -->
+            <section id="panelPrincipal" class="section panel-doble">
+                <div class="panel-izquierdo">
+                    <div class="section-header">
+                        <i class="fas fa-edit section-icon"></i>
+                        <h2>Ingreso de Nodos del Árbol</h2>
+                    </div>
+                    <div class="input-container">
+                        <div class="input-group">
+                            <div class="input-wrapper">
+                                <i class="fas fa-hashtag input-icon"></i>
+                                <input type="number" id="nodoInput" placeholder="Valor del nodo..." class="number-input">
+                            </div>
+                            <button id="btnAgregarRaiz" class="btn btn-primary"><i class="fas fa-plus"></i> Insertar como Raíz</button>
+                            <button id="btnAgregarNodo" class="btn btn-secondary" disabled><i class="fas fa-plus"></i> Insertar Nodo</button>
+                            <button id="btnGenerarAleatorios" class="btn btn-outline"><i class="fas fa-random"></i> Generar Aleatorios</button>
+                            <button id="btnDeshacer" class="btn btn-outline" disabled><i class="fas fa-undo"></i> Deshacer</button>
+                        </div>
+                        <p class="info-text">El primer nodo será la raíz. Los siguientes se insertarán automáticamente (menores a la izquierda, mayores a la derecha).</p>
+                        <div id="nodosActuales" class="nodos-display"></div>
+                    </div>
+                </div>
+
+                <div class="panel-derecho">
+                    <div class="section-header">
+                        <i class="fas fa-project-diagram section-icon"></i>
+                        <h2>Visualización del Árbol Binario</h2>
+                    </div>
+                    <div class="canvas-container">
+                        <canvas id="treeCanvas"></canvas>
+                    </div>
+                    <button onclick="dibujarArbol()" class="btn btn-visual"><i class="fas fa-sync-alt"></i> Actualizar Vista</button>
+                </div>
             </section>
 
             <!-- Reportes -->
@@ -123,6 +121,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- Código Java -->
             <section id="codigo" class="section code-section">
                 <div class="section-header">
