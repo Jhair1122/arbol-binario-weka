@@ -566,3 +566,106 @@ footer {
     max-width: 100%;
     height: auto;           /* mantiene proporción */
 }
+
+/* ============ MEJORAS RESPONSIVE ============ */
+
+/* Ajustes para tablets y móviles */
+@media (max-width: 900px) {
+    .panel-doble {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .panel-izquierdo,
+    .panel-derecho {
+        flex: 1 1 auto;
+        min-width: 100%;
+    }
+    
+    /* Asegurar que el canvas no desborde en móviles */
+    .canvas-container {
+        max-height: 400px;
+        overflow: auto;
+    }
+    
+    /* Reducir padding de secciones */
+    .section {
+        padding: 1.5rem;
+    }
+    
+    /* Ajustar botones para que no sean demasiado grandes */
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Inputs más compactos */
+    .number-input {
+        padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+        font-size: 1rem;
+    }
+    
+    /* Contenedor de input */
+    .input-container {
+        padding: 1.5rem;
+    }
+    
+    /* Ocultar algunos enlaces del navbar en móviles si es necesario (opcional) */
+    .nav-links {
+        gap: 0.5rem;
+    }
+    .nav-links a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes específicos para móviles pequeños (hasta 600px) */
+@media (max-width: 600px) {
+    .title-animation {
+        font-size: 2.2rem;
+    }
+    
+    .header-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .stat-item {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+    }
+    
+    /* Botones en el panel de ingreso: apilar verticalmente */
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+    
+    /* Canvas más pequeño */
+    .canvas-container {
+        max-height: 300px;
+    }
+    
+    /* Reportes: una columna */
+    .report-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Prueba de escritorio: altura limitada */
+    .desktop-test {
+        max-height: 400px;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 1.5rem;
+    }
+}
