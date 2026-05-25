@@ -1,5 +1,7 @@
 const arbol = new BinarySearchTree();
 let raizEstablecida = false;
+let historialInserciones = [];  // guarda valores insertados en orden
+let valorResaltado = null;      // para el highlight
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnAgregarRaiz').addEventListener('click', insertarRaiz);
