@@ -1,7 +1,7 @@
 const arbol = new BinarySearchTree();
 let raizEstablecida = false;
-let historialInserciones = [];  // guarda valores insertados en orden
-let valorResaltado = null;      // para el highlight
+let historialInserciones = [];
+let valorResaltado = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnAgregarRaiz').addEventListener('click', insertarRaiz);
@@ -45,7 +45,7 @@ function insertarRaiz() {
     actualizarReportes();
     generarPruebaEscritorio();
     
-    // Resalta la nueva raíz por 1 segundo
+    // Resaltar nueva raíz
     valorResaltado = valor;
     dibujarArbol();
     setTimeout(() => {
@@ -71,7 +71,7 @@ function insertarNodo() {
         actualizarReportes();
         generarPruebaEscritorio();
         
-        // Resalta el nuevo nodo por 1 segundo
+        // Resaltar nuevo nodo
         valorResaltado = valor;
         dibujarArbol();
         setTimeout(() => {
@@ -129,7 +129,6 @@ function buscarNodo() {
     const contenedor = document.getElementById('resultadoBusqueda');
     
     if (resultado.encontrado) {
-        // Resaltar nodo encontrado por 2 segundos
         valorResaltado = valor;
         dibujarArbol();
         setTimeout(() => {
@@ -179,9 +178,8 @@ function dibujarArbol() {
 
 function deshacerUltimaInsercion() {
     if (historialInserciones.length === 0) return;
-    historialInserciones.pop(); // quita el último
+    historialInserciones.pop();
     
-    // Reconstruir árbol desde cero
     arbol.raiz = null;
     arbol.totalNodos = 0;
     raizEstablecida = false;
