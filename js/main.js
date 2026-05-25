@@ -45,14 +45,7 @@ function insertarRaiz() {
     actualizarReportes();
     generarPruebaEscritorio();
     
-    // Resaltar nueva raíz
-    valorResaltado = valor;
-    dibujarArbol();
-    setTimeout(() => {
-        valorResaltado = null;
-        dibujarArbol();
-    }, 1000);
-    
+    resaltarNodo(valor, 1000);
     mostrarNotificacion('Raíz insertada correctamente', 'success');
 }
 
@@ -71,14 +64,7 @@ function insertarNodo() {
         actualizarReportes();
         generarPruebaEscritorio();
         
-        // Resaltar nuevo nodo
-        valorResaltado = valor;
-        dibujarArbol();
-        setTimeout(() => {
-            valorResaltado = null;
-            dibujarArbol();
-        }, 1000);
-        
+        resaltarNodo(valor, 1000);
         mostrarNotificacion(`Nodo ${valor} insertado`, 'success');
     } else {
         mostrarNotificacion('El valor ya existe en el árbol', 'error');
@@ -98,9 +84,7 @@ function generarAleatorios() {
     for (let i = 0; i < cantidad; i++) {
         const valorAleatorio = Math.floor(Math.random() * 100) + 1;
         const insertado = arbol.insertar(valorAleatorio);
-        if (insertado) {
-            historialInserciones.push(valorAleatorio);
-        }
+        if (insertado) historialInserciones.push(valorAleatorio);
     }
     document.getElementById('btnDeshacer').disabled = (historialInserciones.length === 0);
     
@@ -129,13 +113,7 @@ function buscarNodo() {
     const contenedor = document.getElementById('resultadoBusqueda');
     
     if (resultado.encontrado) {
-        valorResaltado = valor;
-        dibujarArbol();
-        setTimeout(() => {
-            valorResaltado = null;
-            dibujarArbol();
-        }, 2000);
-        
+        resaltarNodo(valor, 2000);
         contenedor.innerHTML = `
             <div class="search-found">
                 <i class="fas fa-check-circle"></i>
@@ -169,11 +147,30 @@ function actualizarReportes() {
     document.getElementById('inordenDescResult').textContent = desc.recorrido.join(' → ') || '(vacío)';
     document.getElementById('pasosInorden').innerHTML = `<small>Pasos: ${ino.pasos}</small>`;
     document.getElementById('pasosInordenDesc').innerHTML = `<small>Pasos: ${desc.pasos}</small>`;
+
+    // Reanimar tarjetas
+    document.querySelectorAll('.report-card').forEach(card => {
+        card.classList.remove('report-card');
+        void card.offsetWidth;
+        card.classList.add('report-card');
+    });
 }
 
 function dibujarArbol() {
     const vis = new TreeVisualizer('treeCanvas');
     vis.dibujar(arbol, valorResaltado);
+}
+
+function resaltarNodo(valor, duracion) {
+    const canvas = document.getElementById('treeCanvas');
+    valorResaltado = valor;
+    canvas.classList.add('canvas-highlight');
+    dibujarArbol();
+    setTimeout(() => {
+        valorResaltado = null;
+        canvas.classList.remove('canvas-highlight');
+        dibujarArbol();
+    }, duracion);
 }
 
 function deshacerUltimaInsercion() {
