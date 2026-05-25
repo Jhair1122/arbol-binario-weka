@@ -47,7 +47,6 @@ body::before {
     50% { opacity: 1; }
 }
 
-/* Partículas animadas */
 .particles {
     position: fixed;
     top: 0; left: 0;
@@ -71,7 +70,6 @@ body::before {
     100% { transform: translate3d(0,0,0) rotate(360deg) scale(1); opacity: 0.2; }
 }
 
-/* Navbar con efecto glass mejorado */
 .navbar {
     position: fixed;
     top: 20px;
@@ -171,7 +169,6 @@ body::before {
     transform: translateY(-2px);
 }
 
-/* Container principal */
 .container {
     max-width: 1400px;
     margin: 0 auto;
@@ -180,7 +177,6 @@ body::before {
     z-index: 1;
 }
 
-/* Header con animación de entrada */
 .header {
     text-align: center;
     padding: 4rem 0;
@@ -254,7 +250,6 @@ body::before {
     -webkit-text-fill-color: transparent;
 }
 
-/* Secciones con efecto glass */
 .section {
     background: var(--glass-bg);
     backdrop-filter: blur(30px);
@@ -312,7 +307,6 @@ body::before {
     50% { transform: scale(1.08); }
 }
 
-/* Inputs y botones con animaciones */
 .input-container {
     background: rgba(0,0,0,0.25);
     border-radius: 25px;
@@ -375,7 +369,6 @@ body::before {
     box-shadow: 0 0 25px rgba(108,92,231,0.2), inset 0 0 15px rgba(108,92,231,0.05);
 }
 
-/* Botones modernos */
 .btn {
     padding: 1.1rem 2.2rem;
     border: none;
@@ -425,7 +418,6 @@ body::before {
     color: white;
 }
 
-/* Tags de números con animación */
 .nodos-display {
     min-height: 80px;
     padding: 1.5rem;
@@ -473,7 +465,6 @@ body::before {
     font-style: italic;
 }
 
-/* Reportes con tarjetas */
 .report-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -488,6 +479,18 @@ body::before {
     padding: 1.5rem;
     border: 1px solid rgba(255,255,255,0.08);
     transition: all 0.3s;
+    animation: cardSlideIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+.report-card:nth-child(1) { animation-delay: 0.05s; }
+.report-card:nth-child(2) { animation-delay: 0.15s; }
+.report-card:nth-child(3) { animation-delay: 0.25s; }
+.report-card:nth-child(4) { animation-delay: 0.35s; }
+
+@keyframes cardSlideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .report-card:hover {
@@ -518,7 +521,6 @@ body::before {
     font-weight: 600;
 }
 
-/* Búsqueda */
 .search-box {
     display: flex;
     gap: 1rem;
@@ -544,7 +546,6 @@ body::before {
 .search-found i { color: var(--success); font-size: 2rem; }
 .search-not-found i { color: var(--danger); font-size: 2rem; }
 
-/* Canvas del árbol */
 .canvas-container {
     overflow: auto;
     max-height: 600px;
@@ -564,7 +565,17 @@ body::before {
     border-radius: 12px;
 }
 
-/* Código Java */
+/* Pulso para nodo resaltado */
+@keyframes pulseHighlight {
+    0% { filter: drop-shadow(0 0 5px gold); }
+    50% { filter: drop-shadow(0 0 20px orange); }
+    100% { filter: drop-shadow(0 0 5px gold); }
+}
+
+.canvas-highlight {
+    animation: pulseHighlight 0.6s ease-in-out 3;
+}
+
 #codigoJava {
     background: #12122a;
     color: #b0ffb0;
@@ -579,7 +590,6 @@ body::before {
     box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
 }
 
-/* Prueba de escritorio */
 .desktop-test {
     background: rgba(0,0,0,0.4);
     backdrop-filter: blur(15px);
@@ -593,7 +603,6 @@ body::before {
     white-space: pre-wrap;
 }
 
-/* Footer */
 footer {
     text-align: center;
     padding: 3rem;
@@ -602,7 +611,6 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Notificaciones */
 .notificacion {
     position: fixed;
     top: 120px; right: 30px;
@@ -624,7 +632,12 @@ footer {
     to { transform: translateX(0); opacity: 1; }
 }
 
-/* ============ PANEL DOBLE ============ */
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(150%); opacity: 0; }
+}
+
+/* Panel doble */
 .panel-doble {
     display: flex;
     gap: 2rem;
@@ -654,7 +667,7 @@ footer {
     border-radius: 12px;
 }
 
-/* ============ MEJORAS RESPONSIVE ============ */
+/* Responsive */
 @media (max-width: 900px) {
     .panel-doble {
         flex-direction: column;
