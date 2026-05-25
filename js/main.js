@@ -147,7 +147,7 @@ function mostrarCodigo() {
     }
 }
 
-const codigoJava = `import weka.core.*; // Uso simbólico de la librería Weka
+const codigoJava = `import weka.core.*;
 
 public class ArbolBinario {
     class Nodo {
