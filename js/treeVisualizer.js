@@ -6,7 +6,7 @@ class TreeVisualizer {
         this.canvas.height = 500;
     }
 
-    dibujar(arbol) {
+    dibujar(arbol, highlightValue = null) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         if (!arbol || !arbol.raiz) {
             this.ctx.fillStyle = 'rgba(255,255,255,0.3)';
@@ -57,10 +57,20 @@ class TreeVisualizer {
         for (let [nodo, pos] of posiciones) {
             this.ctx.beginPath();
             this.ctx.arc(pos.x, pos.y, 22, 0, 2 * Math.PI);
-            const grad = this.ctx.createRadialGradient(pos.x-4, pos.y-4, 3, pos.x, pos.y, 22);
-            grad.addColorStop(0, '#b44bff');
-            grad.addColorStop(1, '#4b9fff');
-            this.ctx.fillStyle = grad;
+
+            // Si el nodo es el resaltado, usa color dorado
+            if (highlightValue !== null && nodo.valor === highlightValue) {
+                const grad = this.ctx.createRadialGradient(pos.x-4, pos.y-4, 3, pos.x, pos.y, 22);
+                grad.addColorStop(0, '#FFD700');   // dorado
+                grad.addColorStop(1, '#FF8C00');   // naranja oscuro
+                this.ctx.fillStyle = grad;
+            } else {
+                const grad = this.ctx.createRadialGradient(pos.x-4, pos.y-4, 3, pos.x, pos.y, 22);
+                grad.addColorStop(0, '#b44bff');
+                grad.addColorStop(1, '#4b9fff');
+                this.ctx.fillStyle = grad;
+            }
+
             this.ctx.fill();
             this.ctx.strokeStyle = '#fff';
             this.ctx.lineWidth = 2;
