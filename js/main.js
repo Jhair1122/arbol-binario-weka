@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnAgregarRaiz').addEventListener('click', insertarRaiz);
     document.getElementById('btnAgregarNodo').addEventListener('click', insertarNodo);
     document.getElementById('btnGenerarAleatorios').addEventListener('click', generarAleatorios);
+    document.getElementById('btnDeshacer').addEventListener('click', deshacerUltimaInsercion);
     document.getElementById('nodoInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             raizEstablecida ? insertarNodo() : insertarRaiz();
@@ -32,6 +33,9 @@ function insertarRaiz() {
         return;
     }
     arbol.insertar(valor);
+    historialInserciones.push(valor);
+    document.getElementById('btnDeshacer').disabled = false;
+    
     input.value = '';
     raizEstablecida = true;
     document.getElementById('btnAgregarRaiz').disabled = true;
@@ -40,6 +44,15 @@ function insertarRaiz() {
     dibujarArbol();
     actualizarReportes();
     generarPruebaEscritorio();
+    
+    // Resalta la nueva raíz por 1 segundo
+    valorResaltado = valor;
+    dibujarArbol();
+    setTimeout(() => {
+        valorResaltado = null;
+        dibujarArbol();
+    }, 1000);
+    
     mostrarNotificacion('Raíz insertada correctamente', 'success');
 }
 
@@ -49,11 +62,23 @@ function insertarNodo() {
     if (isNaN(valor)) { mostrarNotificacion('Ingrese un valor válido', 'error'); return; }
     const insertado = arbol.insertar(valor);
     if (insertado) {
+        historialInserciones.push(valor);
+        document.getElementById('btnDeshacer').disabled = false;
+        
         input.value = '';
         actualizarDisplayNodos();
         dibujarArbol();
         actualizarReportes();
         generarPruebaEscritorio();
+        
+        // Resalta el nuevo nodo por 1 segundo
+        valorResaltado = valor;
+        dibujarArbol();
+        setTimeout(() => {
+            valorResaltado = null;
+            dibujarArbol();
+        }, 1000);
+        
         mostrarNotificacion(`Nodo ${valor} insertado`, 'success');
     } else {
         mostrarNotificacion('El valor ya existe en el árbol', 'error');
@@ -64,14 +89,21 @@ function generarAleatorios() {
     if (!raizEstablecida) {
         const raizVal = Math.floor(Math.random() * 50) + 10;
         arbol.insertar(raizVal);
+        historialInserciones.push(raizVal);
         raizEstablecida = true;
         document.getElementById('btnAgregarRaiz').disabled = true;
         document.getElementById('btnAgregarNodo').disabled = false;
     }
     const cantidad = 5 + Math.floor(Math.random() * 6);
     for (let i = 0; i < cantidad; i++) {
-        arbol.insertar(Math.floor(Math.random() * 100) + 1);
+        const valorAleatorio = Math.floor(Math.random() * 100) + 1;
+        const insertado = arbol.insertar(valorAleatorio);
+        if (insertado) {
+            historialInserciones.push(valorAleatorio);
+        }
     }
+    document.getElementById('btnDeshacer').disabled = (historialInserciones.length === 0);
+    
     actualizarDisplayNodos();
     dibujarArbol();
     actualizarReportes();
@@ -95,7 +127,16 @@ function buscarNodo() {
     if (isNaN(valor)) { mostrarNotificacion('Ingrese valor a buscar', 'error'); return; }
     const resultado = arbol.buscar(valor);
     const contenedor = document.getElementById('resultadoBusqueda');
+    
     if (resultado.encontrado) {
+        // Resaltar nodo encontrado por 2 segundos
+        valorResaltado = valor;
+        dibujarArbol();
+        setTimeout(() => {
+            valorResaltado = null;
+            dibujarArbol();
+        }, 2000);
+        
         contenedor.innerHTML = `
             <div class="search-found">
                 <i class="fas fa-check-circle"></i>
@@ -133,7 +174,38 @@ function actualizarReportes() {
 
 function dibujarArbol() {
     const vis = new TreeVisualizer('treeCanvas');
-    vis.dibujar(arbol);
+    vis.dibujar(arbol, valorResaltado);
+}
+
+function deshacerUltimaInsercion() {
+    if (historialInserciones.length === 0) return;
+    historialInserciones.pop(); // quita el último
+    
+    // Reconstruir árbol desde cero
+    arbol.raiz = null;
+    arbol.totalNodos = 0;
+    raizEstablecida = false;
+    document.getElementById('btnAgregarRaiz').disabled = false;
+    document.getElementById('btnAgregarNodo').disabled = true;
+
+    for (let val of historialInserciones) {
+        arbol.insertar(val);
+        if (!raizEstablecida) {
+            raizEstablecida = true;
+            document.getElementById('btnAgregarRaiz').disabled = true;
+            document.getElementById('btnAgregarNodo').disabled = false;
+        }
+    }
+
+    if (historialInserciones.length === 0) {
+        document.getElementById('btnDeshacer').disabled = true;
+    }
+
+    actualizarDisplayNodos();
+    dibujarArbol();
+    actualizarReportes();
+    generarPruebaEscritorio();
+    mostrarNotificacion('Última inserción deshecha', 'success');
 }
 
 function mostrarCodigo() {
