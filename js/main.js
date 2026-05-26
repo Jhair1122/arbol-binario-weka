@@ -6,7 +6,6 @@ let valorResaltado = null;
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnAgregarRaiz').addEventListener('click', insertarRaiz);
     document.getElementById('btnAgregarNodo').addEventListener('click', insertarNodo);
-    //document.getElementById('btnGenerarAleatorios').addEventListener('click', generarAleatorios);
     document.getElementById('btnDeshacer').addEventListener('click', deshacerUltimaInsercion);
     document.getElementById('nodoInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -67,29 +66,6 @@ function insertarNodo() {
     } else {
         mostrarNotificacion('El valor ya existe en el árbol', 'error');
     }
-}
-
-function generarAleatorios() {
-    if (!raizEstablecida) {
-        const raizVal = Math.floor(Math.random() * 50) + 10;
-        arbol.insertar(raizVal);
-        historialInserciones.push(raizVal);
-        raizEstablecida = true;
-        document.getElementById('btnAgregarRaiz').disabled = true;
-        document.getElementById('btnAgregarNodo').disabled = false;
-    }
-    const cantidad = 5 + Math.floor(Math.random() * 6);
-    for (let i = 0; i < cantidad; i++) {
-        const valorAleatorio = Math.floor(Math.random() * 100) + 1;
-        const insertado = arbol.insertar(valorAleatorio);
-        if (insertado) historialInserciones.push(valorAleatorio);
-    }
-    document.getElementById('btnDeshacer').disabled = (historialInserciones.length === 0);
-    
-    actualizarDisplayNodos();
-    dibujarArbol();
-    actualizarReportes();
-    mostrarNotificacion(`${cantidad} nodos aleatorios agregados`, 'success');
 }
 
 function actualizarDisplayNodos() {
