@@ -23,7 +23,7 @@ body {
     background: #0a0a1a;
     color: #fff;
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow-x: clip;       /* más moderno que hidden, evita cortes de fixed */
     position: relative;
     scroll-behavior: smooth;
 }
@@ -616,7 +616,7 @@ footer {
     top: 120px;
     right: 30px;
     left: auto;
-    max-width: 420px;
+    max-width: 90vw;
     width: auto;
     padding: 1.2rem 2.5rem;
     border-radius: 15px;
@@ -634,13 +634,13 @@ footer {
 }
 
 @keyframes slideInRight {
-    from { transform: translateX(200%); opacity: 0; }
+    from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
 
 @keyframes slideOutRight {
     from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(30px); opacity: 0; }
 }
 
 /* Panel doble */
