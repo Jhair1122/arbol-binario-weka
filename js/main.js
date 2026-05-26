@@ -6,7 +6,7 @@ let valorResaltado = null;
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnAgregarRaiz').addEventListener('click', insertarRaiz);
     document.getElementById('btnAgregarNodo').addEventListener('click', insertarNodo);
-    document.getElementById('btnGenerarAleatorios').addEventListener('click', generarAleatorios);
+    //document.getElementById('btnGenerarAleatorios').addEventListener('click', generarAleatorios);
     document.getElementById('btnDeshacer').addEventListener('click', deshacerUltimaInsercion);
     document.getElementById('nodoInput').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
